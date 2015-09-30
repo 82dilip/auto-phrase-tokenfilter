@@ -7,7 +7,7 @@
   <!-- Inherit defaults from Spring Boot -->
   <groupId>com.lucidworks.solr</groupId>
   <artifactId>auto-phrase-tokenfilter</artifactId>
-  <version>4.10.3</version>
+  <version>4.8.0</version>
 
   <properties>
     <java.version>1.7</java.version>

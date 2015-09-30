@@ -7,18 +7,19 @@ import junit.framework.TestCase;
 import org.apache.lucene.analysis.core.WhitespaceTokenizer;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.analysis.util.CharArraySet;
+import org.apache.lucene.util.Version;
 
 public class TestAutoPhrasingTokenFilter extends TestCase {
     
   public void testAutoPhrase( ) throws Exception {
-    final CharArraySet phraseSets = new CharArraySet( Arrays.asList(
+    final CharArraySet phraseSets = new CharArraySet( Version.LUCENE_48, Arrays.asList(
             "income tax", "tax refund", "property tax" ), false);
     
     final String input = "what is my income tax refund this year now that my property tax is so high";
         
 
     StringReader reader = new StringReader(input);
-    final WhitespaceTokenizer in = new WhitespaceTokenizer( reader );
+    final WhitespaceTokenizer in = new WhitespaceTokenizer( Version.LUCENE_48, reader );
     AutoPhrasingTokenFilter aptf = new AutoPhrasingTokenFilter( in, phraseSets, false );
     aptf.setReplaceWhitespaceWith( new Character( '_' ) );
     CharTermAttribute term = aptf.addAttribute(CharTermAttribute.class);
@@ -55,13 +56,13 @@ public class TestAutoPhrasingTokenFilter extends TestCase {
   }
     
   public void testAutoPhraseEmitSingle( ) throws Exception {
-    final CharArraySet phraseSets = new CharArraySet( Arrays.asList(
+    final CharArraySet phraseSets = new CharArraySet( Version.LUCENE_48, Arrays.asList(
         "income tax", "tax refund", "property tax" ), false);
         
     final String input = "what is my income tax refund this year now that my property tax is so high";
       
     StringReader reader = new StringReader(input);
-    final WhitespaceTokenizer in = new WhitespaceTokenizer( reader );
+    final WhitespaceTokenizer in = new WhitespaceTokenizer( Version.LUCENE_48, reader );
         
     AutoPhrasingTokenFilter aptf = new AutoPhrasingTokenFilter( in, phraseSets, true );
     aptf.setReplaceWhitespaceWith( new Character( '_' ) );
@@ -109,13 +110,13 @@ public class TestAutoPhrasingTokenFilter extends TestCase {
   }
     
   public void testOverlappingAtBeginning( ) throws Exception {
-    final CharArraySet phraseSets = new CharArraySet( Arrays.asList(
+    final CharArraySet phraseSets = new CharArraySet( Version.LUCENE_48, Arrays.asList(
             "new york", "new york city", "city of new york" ), false);
         
     final String input = "new york city is great";
         
     StringReader reader = new StringReader(input);
-    final WhitespaceTokenizer in = new WhitespaceTokenizer( reader );
+    final WhitespaceTokenizer in = new WhitespaceTokenizer( Version.LUCENE_48, reader );
         
     AutoPhrasingTokenFilter aptf = new AutoPhrasingTokenFilter( in, phraseSets, false );
     aptf.setReplaceWhitespaceWith( new Character( '_' ) );
@@ -131,13 +132,13 @@ public class TestAutoPhrasingTokenFilter extends TestCase {
   }
     
   public void testOverlappingAtBeginningEmitSingle( ) throws Exception {
-    final CharArraySet phraseSets = new CharArraySet( Arrays.asList(
+    final CharArraySet phraseSets = new CharArraySet( Version.LUCENE_48, Arrays.asList(
             "new york", "new york city", "city of new york" ), false);
         
     final String input = "new york city is great";
         
     StringReader reader = new StringReader(input);
-    final WhitespaceTokenizer in = new WhitespaceTokenizer( reader );
+    final WhitespaceTokenizer in = new WhitespaceTokenizer( Version.LUCENE_48, reader );
       
     AutoPhrasingTokenFilter aptf = new AutoPhrasingTokenFilter( in, phraseSets, true );
     aptf.setReplaceWhitespaceWith( new Character( '_' ) );
@@ -161,13 +162,13 @@ public class TestAutoPhrasingTokenFilter extends TestCase {
   }
     
   public void testOverlappingAtEndEmitSingle( ) throws Exception {
-    final CharArraySet phraseSets = new CharArraySet( Arrays.asList(
+    final CharArraySet phraseSets = new CharArraySet( Version.LUCENE_48, Arrays.asList(
         "new york", "new york city", "city of new york" ), false);
         
     final String input = "the great city of new york";
         
     StringReader reader = new StringReader(input);
-    final WhitespaceTokenizer in = new WhitespaceTokenizer( reader );
+    final WhitespaceTokenizer in = new WhitespaceTokenizer( Version.LUCENE_48, reader );
         
     AutoPhrasingTokenFilter aptf = new AutoPhrasingTokenFilter( in, phraseSets, true );
     aptf.setReplaceWhitespaceWith( new Character( '_' ) );
@@ -193,13 +194,13 @@ public class TestAutoPhrasingTokenFilter extends TestCase {
   }
     
   public void testOverlappingAtEnd( ) throws Exception {
-    final CharArraySet phraseSets = new CharArraySet( Arrays.asList(
+    final CharArraySet phraseSets = new CharArraySet( Version.LUCENE_48, Arrays.asList(
         "new york", "new york city", "city of new york" ), false);
         
     final String input = "the great city of new york";
         
     StringReader reader = new StringReader(input);
-    final WhitespaceTokenizer in = new WhitespaceTokenizer( reader );
+    final WhitespaceTokenizer in = new WhitespaceTokenizer( Version.LUCENE_48, reader );
         
     AutoPhrasingTokenFilter aptf = new AutoPhrasingTokenFilter( in, phraseSets, false );
     aptf.setReplaceWhitespaceWith( new Character( '_' ) );
@@ -215,13 +216,13 @@ public class TestAutoPhrasingTokenFilter extends TestCase {
   }
     
   public void testIncompletePhrase( ) throws Exception {
-    final CharArraySet phraseSets = new CharArraySet( Arrays.asList(
+    final CharArraySet phraseSets = new CharArraySet( Version.LUCENE_48, Arrays.asList(
         "big apple", "new york city", "property tax", "three word phrase"), false);
         
     final String input = "some new york";
         
     StringReader reader = new StringReader(input);
-    final WhitespaceTokenizer in = new WhitespaceTokenizer( reader );
+    final WhitespaceTokenizer in = new WhitespaceTokenizer( Version.LUCENE_48, reader );
         
     AutoPhrasingTokenFilter aptf = new AutoPhrasingTokenFilter( in, phraseSets, false );
     aptf.setReplaceWhitespaceWith( new Character( '_' ) );
